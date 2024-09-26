@@ -13,6 +13,7 @@ interface ConnectorWithProviders extends Connector {
 export interface ConnectorControllerState {
   allConnectors: Connector[]
   connectors: ConnectorWithProviders[]
+  showSocialConnectorsOnly: boolean
 }
 
 type StateKey = keyof ConnectorControllerState
@@ -20,7 +21,8 @@ type StateKey = keyof ConnectorControllerState
 // -- State --------------------------------------------- //
 const state = proxy<ConnectorControllerState>({
   allConnectors: [],
-  connectors: []
+  connectors: [],
+  showSocialConnectorsOnly: false
 })
 
 // -- Controller ---------------------------------------- //
@@ -45,6 +47,10 @@ export const ConnectorController = {
 
     state.allConnectors = [...state.connectors, ...newConnectors]
     state.connectors = this.mergeMultiChainConnectors(state.allConnectors)
+  },
+
+  setShowSocialConnectorsOnly(showSocialConnectorsOnly: boolean) {
+    state.showSocialConnectorsOnly = showSocialConnectorsOnly
   },
 
   mergeMultiChainConnectors(connectors: Connector[]) {

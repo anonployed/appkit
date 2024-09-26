@@ -36,7 +36,7 @@ export class W3mConnectView extends LitElement {
   // -- Render -------------------------------------------- //
   public override render() {
     return html`
-      <wui-flex flexDirection="column" .padding=${['3xs', 's', 's', 's']}>
+      <wui-flex flexDirection="column" .padding=${['3xs', 's', '2l', 's']}>
         <w3m-email-login-widget></w3m-email-login-widget>
         <w3m-social-login-widget></w3m-social-login-widget>
         ${this.walletListTemplate()}
@@ -58,11 +58,12 @@ export class W3mConnectView extends LitElement {
     if (this.authConnector && socials) {
       if (this.authConnector && emailShowWallets) {
         return html`
-          <wui-flex flexDirection="column" gap="xs" .margin=${['xs', '0', '0', '0'] as const}>
+          <wui-flex flexDirection="column" gap="l" .margin=${['xs', '0', '0', '0'] as const}>
             <w3m-connector-list></w3m-connector-list>
             <wui-flex class="all-wallets">
               <w3m-all-wallets-widget></w3m-all-wallets-widget>
             </wui-flex>
+            <w3m-get-started-guide></w3m-get-started-guide>
           </wui-flex>
         `
       }

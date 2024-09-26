@@ -20,6 +20,7 @@ const modal = createAppKit({
   adapters: [wagmiAdapter],
   networks: ConstantsUtil.EvmNetworks,
   projectId: ConstantsUtil.ProjectId,
+  showWallets: false,
   features: {
     analytics: true,
     email: true,
