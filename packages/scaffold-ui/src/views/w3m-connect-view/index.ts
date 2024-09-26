@@ -18,7 +18,7 @@ export class W3mConnectView extends LitElement {
 
   @state() private features = OptionsController.state.features
 
-  @state() private showSocialsOnly = ConnectorController.state.showSocialConnectorsOnly
+  @state() private showGuide = ConnectorController.state.showGuide
 
   public constructor() {
     super()
@@ -28,8 +28,8 @@ export class W3mConnectView extends LitElement {
         this.authConnector = this.connectors.find(c => c.type === 'AUTH')
       }),
       OptionsController.subscribeKey('features', val => (this.features = val)),
-      ConnectorController.subscribeKey('showSocialConnectorsOnly', val => {
-        this.showSocialsOnly = val
+      ConnectorController.subscribeKey('showGuide', val => {
+        this.showGuide = val
       })
     )
   }
@@ -61,16 +61,22 @@ export class W3mConnectView extends LitElement {
     }
 
     if (this.authConnector && socials) {
-      if (this.authConnector && emailShowWallets) {
+      if (emailShowWallets) {
+        if (!this.showGuide) {
+          return html`
+            <wui-flex flexDirection="column" gap="l" .margin=${['xs', '0', '0', '0'] as const}>
+              <w3m-connector-list></w3m-connector-list>
+              <wui-flex class="all-wallets">
+                <w3m-all-wallets-widget></w3m-all-wallets-widget>
+              </wui-flex>
+              <w3m-get-started-guide></w3m-get-started-guide>
+            </wui-flex>
+          `
+        }
+
         return html`
-          <wui-flex flexDirection="column" gap="l" .margin=${['xs', '0', '0', '0'] as const}>
-            ${this.showSocialsOnly
-              ? html`<w3m-connector-list></w3m-connector-list>
-                  <wui-flex class="all-wallets">
-                    <w3m-all-wallets-widget></w3m-all-wallets-widget>
-                  </wui-flex>
-                  <w3m-get-started-guide></w3m-get-started-guide>`
-              : null}
+          <wui-flex flexDirection="column" gap="l" .margin=${['xs', '0', 'xs', '0'] as const}>
+            <w3m-wallet-guide></w3m-wallet-guide>
           </wui-flex>
         `
       }

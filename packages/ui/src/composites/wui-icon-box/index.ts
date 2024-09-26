@@ -62,7 +62,7 @@ export class WuiIconBox extends LitElement {
        --local-bg-value: ${bgValueVariable};
        --local-bg-mix: ${isColorChange || isGray ? `100%` : bgMix};
        --local-border-radius: var(--wui-border-radius-${borderRadius});
-       --local-size: var(--wui-icon-box-size-${this.size});
+       --local-size: var(--wui-icon-box-size-2xs);
        --local-border: ${this.borderColor === 'wui-color-bg-125' ? `2px` : `1px`} solid ${
          this.border ? `var(--${this.borderColor})` : `transparent`
        }

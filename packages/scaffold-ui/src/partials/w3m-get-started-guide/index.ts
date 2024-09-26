@@ -31,7 +31,7 @@ export class W3mGetStartedGuide extends LitElement {
 
   // -- Private ------------------------------------------- //
   private onGetStarted() {
-    ConnectorController.setShowSocialConnectorsOnly(true)
+    ConnectorController.setShowGuide(true)
   }
 }
 

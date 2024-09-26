@@ -167,6 +167,7 @@ function createRootStyles(themeVariables?: ThemeVariables) {
         --wui-spacing-5xl: 95px;
 
         --wui-icon-box-size-xxs: 14px;
+        --wui-icon-box-size-2xs: 16px;
         --wui-icon-box-size-xs: 20px;
         --wui-icon-box-size-sm: 24px;
         --wui-icon-box-size-md: 32px;
@@ -253,6 +254,8 @@ function createRootStyles(themeVariables?: ThemeVariables) {
         --wui-color-error-100: var(--wui-color-error-base-100);
 
         --wui-color-blue-100: var(--wui-color-blue-base-100);
+
+        --wui-color-brown-100: var(--wui-color-light-brown-100);
 
         --wui-icon-box-bg-error-100: var(--wui-icon-box-bg-error-base-100);
         --wui-icon-box-bg-blue-100: var(--wui-icon-box-bg-blue-base-100);
@@ -436,6 +439,11 @@ function createRootStyles(themeVariables?: ThemeVariables) {
             var(--w3m-color-mix) var(--w3m-color-mix-strength),
             var(--wui-color-blue-base-100)
           );
+          --wui-color-light-brown-100: color-mix(
+            in srgb,
+            var(--w3m-color-mix) var(--w3m-color-mix-strength),
+            var(--wui-color-light-brown-100)
+          );
 
           --wui-icon-box-bg-error-100: color-mix(
             in srgb,
@@ -518,6 +526,8 @@ function createRootStyles(themeVariables?: ThemeVariables) {
         --wui-color-error-base-100: #f25a67;
         --wui-color-blue-base-100: #667dff;
 
+        --wui-color-light-brown-100: #c7b994;
+
         --wui-color-success-glass-001: rgba(38, 217, 98, 0.01);
         --wui-color-success-glass-002: rgba(38, 217, 98, 0.02);
         --wui-color-success-glass-005: rgba(38, 217, 98, 0.05);
@@ -551,6 +561,8 @@ function createRootStyles(themeVariables?: ThemeVariables) {
         --wui-color-gray-glass-060: rgba(255, 255, 255, 0.6);
         --wui-color-gray-glass-080: rgba(255, 255, 255, 0.8);
         --wui-color-gray-glass-090: rgba(255, 255, 255, 0.9);
+
+        --wui-color-black-glass-100: rgba(32, 32, 32, 1);
 
         --wui-icon-box-bg-error-base-100: #3c2426;
         --wui-icon-box-bg-blue-base-100: #20303f;
@@ -603,6 +615,8 @@ function createRootStyles(themeVariables?: ThemeVariables) {
         --wui-color-error-base-100: #f05142;
         --wui-color-blue-base-100: #667dff;
 
+        --wui-color-light-brown-100: #c7b994;
+
         --wui-color-success-glass-001: rgba(38, 181, 98, 0.01);
         --wui-color-success-glass-002: rgba(38, 181, 98, 0.02);
         --wui-color-success-glass-005: rgba(38, 181, 98, 0.05);
@@ -647,6 +661,8 @@ function createRootStyles(themeVariables?: ThemeVariables) {
         --wui-color-gray-glass-060: rgba(0, 0, 0, 0.6);
         --wui-color-gray-glass-080: rgba(0, 0, 0, 0.8);
         --wui-color-gray-glass-090: rgba(0, 0, 0, 0.9);
+
+        --wui-color-black-glass-100: rgba(32, 32, 32, 1);
       }
     `
   }
@@ -737,6 +753,10 @@ export const colorStyles = css`
 
   .wui-color-blue-100 {
     color: var(--wui-color-blue-100);
+  }
+
+  .wui-color-light-brown-100 {
+    color: var(--wui-color-light-brown);
   }
 
   .wui-color-success-100 {

@@ -25,7 +25,9 @@ const modal = createAppKit({
     analytics: true,
     email: true,
     socials: ['google', 'github', 'apple', 'discord']
-  }
+  },
+  termsConditionsUrl: 'https://www.google.com/',
+  privacyPolicyUrl: 'https://www.google.com/'
 })
 
 ThemeStore.setModal(modal)
