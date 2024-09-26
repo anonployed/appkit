@@ -18,6 +18,8 @@ export class W3mConnectView extends LitElement {
 
   @state() private features = OptionsController.state.features
 
+  @state() private showSocialsOnly = ConnectorController.state.showSocialConnectorsOnly
+
   public constructor() {
     super()
     this.unsubscribe.push(
@@ -25,7 +27,10 @@ export class W3mConnectView extends LitElement {
         this.connectors = val
         this.authConnector = this.connectors.find(c => c.type === 'AUTH')
       }),
-      OptionsController.subscribeKey('features', val => (this.features = val))
+      OptionsController.subscribeKey('features', val => (this.features = val)),
+      ConnectorController.subscribeKey('showSocialConnectorsOnly', val => {
+        this.showSocialsOnly = val
+      })
     )
   }
 
@@ -59,11 +64,13 @@ export class W3mConnectView extends LitElement {
       if (this.authConnector && emailShowWallets) {
         return html`
           <wui-flex flexDirection="column" gap="l" .margin=${['xs', '0', '0', '0'] as const}>
-            <w3m-connector-list></w3m-connector-list>
-            <wui-flex class="all-wallets">
-              <w3m-all-wallets-widget></w3m-all-wallets-widget>
-            </wui-flex>
-            <w3m-get-started-guide></w3m-get-started-guide>
+            ${this.showSocialsOnly
+              ? html`<w3m-connector-list></w3m-connector-list>
+                  <wui-flex class="all-wallets">
+                    <w3m-all-wallets-widget></w3m-all-wallets-widget>
+                  </wui-flex>
+                  <w3m-get-started-guide></w3m-get-started-guide>`
+              : null}
           </wui-flex>
         `
       }

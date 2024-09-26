@@ -1,7 +1,7 @@
-import { EventsController, RouterController } from '@reown/appkit-core'
 import { customElement } from '@reown/appkit-ui'
 import { LitElement, html } from 'lit'
 import styles from './styles.js'
+import { ConnectorController } from '@reown/appkit-core'
 
 @customElement('w3m-get-started-guide')
 export class W3mGetStartedGuide extends LitElement {
@@ -10,22 +10,8 @@ export class W3mGetStartedGuide extends LitElement {
   // -- Members ------------------------------------------- //
   private unsubscribe: (() => void)[] = []
 
-  public constructor() {
-    super()
-    /*
-     * This.unsubscribe.push(
-     *   ConnectorController.subscribeKey('connectors', val => (this.connectors = val)),
-     *   ApiController.subscribeKey('count', val => (this.count = val))
-     * )
-     */
-  }
-
   public override disconnectedCallback() {
     this.unsubscribe.forEach(unsubscribe => unsubscribe())
-  }
-
-  public connected() {
-    console.log('clicked')
   }
 
   // -- Render -------------------------------------------- //
@@ -37,16 +23,15 @@ export class W3mGetStartedGuide extends LitElement {
       justifyContent="center"
     >
       <wui-text variant="small-400" class="title" color="fg-200">Haven't got a wallet?</wui-text>
-      <wui-link color="blue-100" class="get-started-link" @click=${this.connected}
+      <wui-link color="blue-100" class="get-started-link" @click=${this.onGetStarted}
         >Get started</wui-link
       >
     </wui-flex>`
   }
 
   // -- Private ------------------------------------------- //
-  private onAllWallets() {
-    EventsController.sendEvent({ type: 'track', event: 'CLICK_ALL_WALLETS' })
-    RouterController.push('AllWallets')
+  private onGetStarted() {
+    ConnectorController.setShowSocialConnectorsOnly(true)
   }
 }
 
